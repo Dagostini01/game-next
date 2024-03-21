@@ -7,7 +7,7 @@ type NavbarListItemProps = React.ComponentProps<"li">;
 
 const NavbarList = ({children, className, ...props}:NavbarListProps) => {
     return(
-        <ul className={cn("flex-grow my-4 border-t border-indigo-400/20 hover:border-indigo-400/40", className)} {...props}>
+        <ul className={cn("my-4 border-t border-indigo-400/20 hover:border-indigo-400/40", className)} {...props}>
             {children}
         </ul>
 
@@ -23,17 +23,17 @@ const NavbarListItem = ({children, className, ...props}:NavbarListItemProps) => 
     )
 }
 
-export const Navbar = (props:NavbarProps) => {
+export const Navbar = ({className, ...props}:NavbarProps) => {
 
     return (
-        <nav className="flex flex-col h-screen w-72 p-2 gap-4 bg-slate-900 border-r border-indigo-400/20 hover:border-indigo-400/40 text-slate-300" {...props}>
+
+        <nav className={cn("flex flex-col h-screen w-72 p-2 gap-4 bg-slate-900 border-r border-indigo-400/20 hover:border-indigo-400/40 text-slate-300", className)} {...props} >
 
             <div className="flex items-center justify-center my-4">
-
                 <img src="https://emersonbroga.com/e/assets/emersonbroga-logo-name-pink.png" alt="Logo EmersonBrogaDev" className="w-auto h-12 p-2" />
             </div>
 
-            <NavbarList className={"flex-grow"}>
+            <NavbarList className="grow">
                 <NavbarListItem>
                     <HomeIcon className="w-4 h-4" /> Home
                 </NavbarListItem>
@@ -55,5 +55,6 @@ export const Navbar = (props:NavbarProps) => {
             </NavbarList>
 
         </nav>
+
     )
 }
