@@ -3,6 +3,7 @@ import { cn } from "@/helpers/cn";
 import { NavbarProps } from "./types";
 import { NavbarList } from "./NavbarList";
 import { NavbarListItemLink } from "./NavbarListItemLink";
+import { NavbarListItemButton } from "./NavbarListItemButton";
 
 export const Navbar = ({ className, ...props }: NavbarProps) => {
 
@@ -27,6 +28,9 @@ export const Navbar = ({ className, ...props }: NavbarProps) => {
                 <NavbarListItemLink href="/walkthroughs">
                     <RouteIcon className="w-4 h-4" /> Walkthroughs
                 </NavbarListItemLink>
+                <NavbarListItemButton>
+                    <RouteIcon className="w-4 h-4" /> Walkthroughs
+                </NavbarListItemButton>
             </NavbarList>
 
             <NavbarList>

@@ -7,7 +7,7 @@ import { NavbarListItemButtonProps } from "./types"
 export const NavbarListItemButton = ({children, className, ...props}:NavbarListItemButtonProps) => {
     return (
         <NavbarListItem className={cn("p-0", className)}>
-            <button className="flex gap-2 items rounded-lg p-2 w-full" {...props}>
+            <button onClick={()=>{alert("clicou")}} className="flex gap-2 items rounded-lg p-2 w-full" {...props}>
                 {children}
             </button>
         </NavbarListItem>
