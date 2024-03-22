@@ -1,12 +1,15 @@
 import { HomeIcon, GamePadIcon, RouteIcon, Top10Icon, UserIcon } from "@/components";
 import { cn } from "@/helpers/cn";
+import { link } from "fs";
+import Link from "next/link";
 
 type NavbarProps = React.ComponentProps<"nav">;
 type NavbarListProps = React.ComponentProps<"ul">;
 type NavbarListItemProps = React.ComponentProps<"li">;
+type NavbarListItemLinkProps = React.ComponentProps<typeof Link>;
 
-const NavbarList = ({children, className, ...props}:NavbarListProps) => {
-    return(
+const NavbarList = ({ children, className, ...props }: NavbarListProps) => {
+    return (
         <ul className={cn("my-4 border-t border-indigo-400/20 hover:border-indigo-400/40", className)} {...props}>
             {children}
         </ul>
@@ -14,44 +17,54 @@ const NavbarList = ({children, className, ...props}:NavbarListProps) => {
     )
 }
 
-const NavbarListItem = ({children, className, ...props}:NavbarListItemProps) => {
-    return(
-        <li className={cn("group my-2 rounded-lg bg-transparent p-2 cursor-pointer flex gap-1 items-center hover:bg-indigo-400/40 hover:text-slate-100", className)} {...props}>
+const NavbarListItem = ({ children, className, ...props }: NavbarListItemProps) => {
+    return (
+        <li className={cn("group my-2 rounded-lg bg-transparent p-2 cursor-pointer flex gap-2 items-center hover:bg-indigo-400/40 hover:text-slate-100", className)} {...props}>
             {children}
         </li>
 
     )
 }
 
-export const Navbar = ({className, ...props}:NavbarProps) => {
+const NavbarListItemLink = ( {href, children, className, ...props }: NavbarListItemLinkProps ) => {
+    return(
+        <NavbarListItem className={cn("p-0", className)}>
+            <Link href={href} className="flex gap-2 items-center rounded-lg p-2 w-full" {...props}>
+                {children}
+            </Link>
+        </NavbarListItem>
+    )
+}
+
+export const Navbar = ({ className, ...props }: NavbarProps) => {
 
     return (
 
-        <nav className={cn("flex flex-col h-screen w-72 p-2 gap-4 bg-slate-900 border-r border-indigo-400/20 hover:border-indigo-400/40 text-slate-300", className)} {...props} >
+        <nav className={cn("flex flex-col h-screen w-72 p-2 bg-slate-900 border-r border-indigo-400/20 hover:border-indigo-400/40 text-slate-300", className)} {...props} >
 
             <div className="flex items-center justify-center my-4">
                 <img src="https://emersonbroga.com/e/assets/emersonbroga-logo-name-pink.png" alt="Logo EmersonBrogaDev" className="w-auto h-12 p-2" />
             </div>
 
             <NavbarList className="grow">
-                <NavbarListItem>
+                <NavbarListItemLink href="/">
                     <HomeIcon className="w-4 h-4" /> Home
-                </NavbarListItem>
-                <NavbarListItem>
+                </NavbarListItemLink>
+                <NavbarListItemLink href="/games">
                     <GamePadIcon className="w-4 h-4" /> Games
-                </NavbarListItem>
-                <NavbarListItem>
+                </NavbarListItemLink>
+                <NavbarListItemLink href="/top-10">
                     <Top10Icon className="w-4 h-4" /> Top 10
-                </NavbarListItem>
-                <NavbarListItem>
+                </NavbarListItemLink>
+                <NavbarListItemLink href="/walkthroughs">
                     <RouteIcon className="w-4 h-4" /> Walkthroughs
-                </NavbarListItem>
+                </NavbarListItemLink>
             </NavbarList>
 
             <NavbarList>
-                <NavbarListItem>
+                <NavbarListItemLink href="/user">
                     <UserIcon className="w-4 h-4" /> User
-                </NavbarListItem>
+                </NavbarListItemLink>
             </NavbarList>
 
         </nav>
