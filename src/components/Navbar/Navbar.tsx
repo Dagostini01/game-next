@@ -3,7 +3,7 @@ import { cn } from "@/helpers/cn";
 import { NavbarProps } from "./types";
 import { NavbarList } from "./NavbarList";
 import { NavbarListItemLink } from "./NavbarListItemLink";
-import { NavbarListItemButton } from "./NavbarListItemButton";
+import Image from "next/image";
 
 export const Navbar = ({ className, ...props }: NavbarProps) => {
 
@@ -12,7 +12,14 @@ export const Navbar = ({ className, ...props }: NavbarProps) => {
         <nav className={cn("flex flex-col h-screen w-72 p-2 bg-slate-900 border-r border-indigo-400/20 hover:border-indigo-400/40 text-slate-300", className)} {...props} >
 
             <div className="flex items-center justify-center my-4">
-                <img src="https://emersonbroga.com/e/assets/emersonbroga-logo-name-pink.png" alt="Logo EmersonBrogaDev" className="w-auto h-12 p-2" />
+                <Image 
+                    src="https://emersonbroga.com/e/assets/emersonbroga-logo-name-pink.png" 
+                    alt="Logo EmersonBrogaDev" 
+                    className="w-auto h-12 p-2"
+                    width={112}
+                    height={112}
+                    
+                />
             </div>
 
             <NavbarList className="grow">
@@ -28,9 +35,6 @@ export const Navbar = ({ className, ...props }: NavbarProps) => {
                 <NavbarListItemLink href="/walkthroughs">
                     <RouteIcon className="w-4 h-4" /> Walkthroughs
                 </NavbarListItemLink>
-                <NavbarListItemButton>
-                    <RouteIcon className="w-4 h-4" /> Walkthroughs
-                </NavbarListItemButton>
             </NavbarList>
 
             <NavbarList>
